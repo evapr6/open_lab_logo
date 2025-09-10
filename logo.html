@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Animación Logo - Open Future Lab</title>
+    <style>
+      html, body { margin:0; height:100%; background:#FCFCF8; display:grid; place-items:center; }
+      .stage { width:min(920px, 95vw); }
+      svg { width:100%; height:auto; overflow:visible; transform-origin:50% 50%; }
+      .stroke { fill:none; stroke:#000C1F; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; vector-effect: non-scaling-stroke; }
+      .fill  { fill:#000C1F; opacity:0; transform-origin:50% 50%; }
+      #icon-fill { opacity:1; }
+      #logo-icon { transform-origin:50% 50%; transform-box: fill-box; }
+      @keyframes draw {
+        from { stroke-dashoffset: var(--len); }
+        to   { stroke-dashoffset: 0; }
+      }
+      @keyframes pop {
+        0%   { transform: scale(0.94); opacity: 0; }
+        60%  { transform: scale(1.04); opacity: 1; }
+        100% { transform: scale(1); }
+      }
+      @keyframes enterRight {
+        0%   { transform: translateX(32px); opacity: 0; }
+        60%  { transform: translateX(-4px); opacity: 1; }
+        100% { transform: translateX(0); }
+      }
+      @keyframes slideLeftBig {
+        0%   { transform: translateX(380px); }
+        60%  { transform: translateX(-10px); }
+        100% { transform: translateX(0); }
+      }
+      @keyframes logoScaleRotate {
+        0%   { transform: translateX(var(--cx, 0px)) translateY(var(--cy, 0px)) scale(0.85) rotate(0deg); }
+        60%  { transform: translateX(var(--cx, 0px)) translateY(var(--cy, 0px)) scale(1.08) rotate(360deg); }
+        100% { transform: translateX(var(--cx, 0px)) translateY(var(--cy, 0px)) scale(1) rotate(360deg); }
+      }
+      .show-pop { animation: pop 700ms cubic-bezier(.2,.8,.2,1) forwards; }
+      .show-right { animation: enterRight 900ms cubic-bezier(.2,.8,.2,1) forwards; }
+      .slide-left-big { animation: slideLeftBig 1200ms cubic-bezier(.4,.0,.2,1) forwards; }
+      .logo-scale-rotate { animation: logoScaleRotate 1200ms cubic-bezier(.2,.8,.2,1) forwards; }
+      @keyframes slideLeftHome {
+        0%   { transform: translateX(var(--cx, 0px)) translateY(var(--cy, 0px)); }
+        60%  { transform: translateX(-10px) translateY(var(--cy, 0px)); }
+        100% { transform: translateX(0) translateY(var(--cy, 0px)); }
+      }
+      .slide-left-home { animation: slideLeftHome 1200ms cubic-bezier(.4,.0,.2,1) forwards; }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <svg viewBox="0 0 869 69" xmlns="http://www.w3.org/2000/svg" aria-label="Open Future Lab">
+        <!-- ICONO -->
+        <g id="logo-icon">
+          <g id="icon-stroke">
+          <path d="M14.8069 8.46949L0.296138 16.8798L0.177683 34.648L0 52.4163L14.3923 60.7081C22.2695 65.2687 29.2584 69 29.9099 69C30.5614 69 37.6687 65.1502 45.7829 60.5305L60.4121 52.0017V34.7073V17.3536L45.3683 8.7064C37.1356 3.90897 30.1468 -4.63091e-05 29.8507 -4.63091e-05C29.5545 0.0591812 22.8026 3.84974 14.8069 8.46949ZM29.6138 19.8412C29.6138 26.5339 29.4361 31.9828 29.1992 31.9828C28.9622 31.9828 24.0464 29.2583 18.2421 25.9416C11.8455 22.2695 7.99571 19.7227 8.46953 19.4858C8.8249 19.2489 13.5631 16.4652 18.9528 13.3854C24.3425 10.2463 28.903 7.69953 29.1399 7.69953C29.4361 7.69953 29.6138 13.1485 29.6138 19.8412ZM42.9399 14.5107C47.8558 17.3536 51.8833 19.7227 51.9425 19.7819C52.061 19.9004 33.7004 30.5021 31.2721 31.8051C30.976 31.9236 30.7983 26.5931 30.7983 19.8412V7.6403L32.4567 8.52871C33.3451 9.00253 38.0833 11.6678 42.9399 14.5107ZM17.1167 29.2583C26.4155 34.648 27.2447 35.2403 26.297 35.9511C24.6979 37.1356 6.75194 47.382 6.27812 47.382C6.10043 47.382 5.92275 41.8738 5.92275 35.1811C5.92275 28.4884 6.15966 23.0987 6.39657 23.2171C6.69271 23.2764 11.4901 26.0601 17.1167 29.2583ZM53.897 35.2995C53.897 45.9013 53.7786 47.4412 53.0086 47.145C51.8833 46.7305 33.582 36.188 32.9897 35.5957C32.6344 35.2403 52.1794 23.3356 53.4824 23.1579C53.7193 23.0987 53.897 28.6068 53.897 35.2995ZM28.4292 48.8626C28.4292 55.5554 28.2515 61.0043 27.9554 61.0043C27.0077 61.0043 7.58112 49.3957 7.58112 48.8626C7.64035 48.2704 27.067 36.721 28.0146 36.721C28.2515 36.721 28.4292 42.1699 28.4292 48.8626ZM41.7554 42.1699C46.3159 44.8352 50.758 47.4412 51.6464 47.9742L53.2455 48.9219L42.7623 54.9631C36.958 58.2798 32.0421 61.0043 31.8052 61.0043C31.5683 61.0043 31.3906 55.4961 31.3906 48.8034C31.3906 37.491 31.4498 36.6026 32.3974 36.9579C32.9897 37.1948 37.1949 39.5639 41.7554 42.1699Z"/>
+          </g>
+          <g id="icon-fill" class="fill">
+          <path d="M14.8069 8.46949L0.296138 16.8798L0.177683 34.648L0 52.4163L14.3923 60.7081C22.2695 65.2687 29.2584 69 29.9099 69C30.5614 69 37.6687 65.1502 45.7829 60.5305L60.4121 52.0017V34.7073V17.3536L45.3683 8.7064C37.1356 3.90897 30.1468 -4.63091e-05 29.8507 -4.63091e-05C29.5545 0.0591812 22.8026 3.84974 14.8069 8.46949Z"/>
+          </g>
+        </g>
+
+        <!-- TEXTO -->
+        <g id="text-wrap" transform="translate(96 0)">
+          <g id="text-stroke">
+            <path d="M0.467773 24.1288V47.2275H4.6137H8.75962V39.2911V31.4138L15.4523 31.0584C22.9742 30.7031 25.2841 29.9923 28.7785 26.8533C37.1888 19.2722 34.109 5.11679 23.3296 1.91851C21.2566 1.267 17.4661 1.03009 10.418 1.03009H0.467773V24.1288ZM19.3613 9.08503C20.4274 9.32194 22.0266 10.2696 23.0334 11.2172C24.4549 12.6979 24.751 13.4679 24.751 15.8962C24.751 18.2653 24.4549 19.1537 23.0334 20.6936C21.3158 22.6481 21.2566 22.6481 15.0377 22.8258L8.75962 23.0627V16.3108C8.75962 12.5795 8.9373 9.32194 9.17421 9.14426C9.64803 8.61121 16.8738 8.61121 19.3613 9.08503Z"/>
+            <path d="M60.2871 24.1288V47.2275H75.094H89.9009V43.3778V39.528H79.536H69.1712V33.6052V27.6825H78.0554H86.9395V23.8327V19.9829H78.0554H69.1712V14.3563V8.72967H79.2399H89.3086V4.87988V1.03009H74.7978H60.2871V24.1288Z"/>
+            <path d="M118.334 24.1288V47.2275H122.48H126.626V27.9786C126.626 16.6069 126.863 8.72967 127.159 8.72967C127.455 8.72967 130.594 17.3769 134.148 27.9786L140.544 47.2275H148.658H156.832V24.1288V1.03009H152.686H148.54L148.422 20.3975C148.303 32.0061 148.007 39.7649 147.711 39.7056C147.415 39.6464 144.216 30.94 140.604 20.3383L134.088 1.03009H126.211H118.334V24.1288Z"/>
+            <path d="M220.797 24.1288V47.2275H224.943H229.089V38.0473V28.867H237.973H246.857V25.0172V21.1674H237.973H229.089V14.9486V8.72967H239.157H249.226V4.87988V1.03009H235.011H220.797V24.1288Z"/>
+            <path d="M276.59 18.0281C276.767 34.4933 276.827 35.204 278.189 38.1654C279.788 41.7783 283.164 45.0358 287.073 46.8126C291.219 48.7079 298.741 48.5895 303.124 46.5757C307.151 44.6804 309.994 41.8968 311.771 38.047C313.133 35.1448 313.192 34.671 313.192 18.0281V1.02979H309.046H304.901V16.9028C304.901 32.1834 304.841 32.8349 303.598 35.3817C301.88 38.6985 299.215 40.1199 294.832 40.1199C290.982 40.1199 288.317 38.6985 286.54 35.8555C285.415 34.0195 285.355 32.8349 285.355 17.4358V1.02979H280.854H276.412L276.59 18.0281Z"/>
+            <path d="M340.078 1.85928C339.9 2.27387 339.841 4.10992 339.959 5.82752L340.137 9.02581L347.422 9.20349L354.648 9.38117V28.2747V47.2275H358.793H362.939V28.2747V9.38117L370.224 9.20349L377.45 9.02581L377.628 4.99834L377.805 1.03009H359.09C343.809 1.03009 340.314 1.20778 340.078 1.85928Z"/>
+            <path d="M404.52 18.0281C404.698 34.4933 404.757 35.204 406.12 38.1654C407.719 41.7783 411.095 45.0358 415.004 46.8126C419.15 48.7079 426.672 48.5895 431.054 46.5757C435.141 44.6804 437.984 41.8968 439.702 38.047C441.242 34.671 441.242 34.3156 441.182 15.0667L441.123 13.02979H436.977H432.831V16.9028C432.831 32.1834 432.772 32.8349 431.528 35.3817C429.811 38.6985 427.145 40.1199 422.763 40.1199C418.913 40.1199 416.248 38.6985 414.471 35.8555C413.345 34.0195 413.286 32.8349 413.286 17.4358V13.02979H408.785H404.343L404.52 18.0281Z"/>
+            <path d="M471.326 24.0696V47.2275H475.472H479.618V39.2318V31.2361H485.896C489.331 31.2361 492.648 31.5323 493.3 31.8284C495.432 33.0129 496.202 35.5597 496.202 41.6009V47.2275H500.348H504.494V39.7056C504.494 32.8353 504.375 32.0061 503.072 29.7554C502.243 28.4524 500.644 26.7941 499.518 26.2018C498.334 25.5503 497.386 24.8395 497.386 24.6026C497.386 24.3657 498.275 23.7735 499.341 23.2996C507.514 19.9237 506.863 7.24898 498.275 2.86615C495.491 1.38546 494.899 1.32624 483.349 1.14855L471.326 0.97087V24.0696Z"/>
+            <path d="M534.703 24.1288V47.2275H549.51H564.317V43.3778V39.528H553.656H542.995V33.6052V27.6825H552.175H561.356V23.8327V19.9829H552.175H542.936L543.113 14.4747L543.291 9.02581L553.241 8.84812L563.132 8.72967V4.87988V1.03009H548.918H534.703V24.1288Z"/>
+            <path d="M625.318 24.1288V47.2275H639.829H654.34V43.3778V39.528H644.271H634.202V20.279V1.03009H629.76H625.318V24.1288Z"/>
+            <path d="M690.766 1.74082C689.641 4.76142 676.848 45.9245 676.848 46.4576C676.848 46.9906 678.091 47.2275 681.171 47.2275H685.495L686.857 42.4893L688.279 37.7511H698.17H708.061L709.423 42.4893L710.785 47.2275H715.109C718.248 47.2275 719.491 46.9906 719.491 46.4576C719.491 46.1022 716.293 35.7374 712.443 23.5365L705.395 1.32623L698.229 1.14855C692.78 1.03009 690.944 1.20777 690.766 1.74082ZM702.079 19.0945C703.855 24.6026 705.277 29.3408 705.277 29.5777C705.277 29.8739 702.079 30.0516 698.17 30.0516C694.261 30.0516 691.062 29.8739 691.062 29.5777C691.003 29.3408 692.424 24.5434 694.142 18.9168C696.393 11.6318 697.518 8.72967 698.11 8.84812C698.643 8.96658 700.183 12.8756 702.079 19.0945Z"/>
+          </g>
+          <g id="text-fill" class="fill">
+            <path d="M0.467773 24.1288V47.2275H4.6137H8.75962V39.2911V31.4138L15.4523 31.0584C22.9742 30.7031 25.2841 29.9923 28.7785 26.8533C37.1888 19.2722 34.109 5.11679 23.3296 1.91851C21.2566 1.267 17.4661 1.03009 10.418 1.03009H0.467773V24.1288Z"/>
+            <path d="M60.2871 24.1288V47.2275H75.094H89.9009V43.3778V39.528H79.536H69.1712V33.6052V27.6825H78.0554H86.9395V23.8327V19.9829H78.0554H69.1712V14.3563V8.72967H79.2399H89.3086V4.87988V1.03009H74.7978H60.2871V24.1288Z"/>
+            <path d="M118.334 24.1288V47.2275H122.48H126.626V27.9786C126.626 16.6069 126.863 8.72967 127.159 8.72967C127.455 8.72967 130.594 17.3769 134.148 27.9786L140.544 47.2275H148.658H156.832V24.1288V1.03009H152.686H148.54L148.422 20.3975C148.303 32.0061 148.007 39.7649 147.711 39.7056C147.415 39.6464 144.216 30.94 140.604 20.3383L134.088 1.03009H126.211H118.334V24.1288Z"/>
+            <path d="M220.797 24.1288V47.2275H224.943H229.089V38.0473V28.867H237.973H246.857V25.0172V21.1674H237.973H229.089V14.9486V8.72967H239.157H249.226V4.87988V1.03009H235.011H220.797V24.1288Z"/>
+            <path d="M276.59 18.0281C276.767 34.4933 276.827 35.204 278.189 38.1654C279.788 41.7783 283.164 45.0358 287.073 46.8126C291.219 48.7079 298.741 48.5895 303.124 46.5757C307.151 44.6804 309.994 41.8968 311.771 38.047C313.133 35.1448 313.192 34.671 313.192 18.0281V1.02979H309.046H304.901V16.9028C304.901 32.1834 304.841 32.8349 303.598 35.3817C301.88 38.6985 299.215 40.1199 294.832 40.1199C290.982 40.1199 288.317 38.6985 286.54 35.8555C285.415 34.0195 285.355 32.8349 285.355 17.4358V1.02979H280.854H276.412L276.59 18.0281Z"/>
+            <path d="M340.078 1.85928C339.9 2.27387 339.841 4.10992 339.959 5.82752L340.137 9.02581L347.422 9.20349L354.648 9.38117V28.2747V47.2275H358.793H362.939V28.2747V9.38117L370.224 9.20349L377.45 9.02581L377.628 4.99834L377.805 1.03009H359.09C343.809 1.03009 340.314 1.20778 340.078 1.85928Z"/>
+            <path d="M404.52 18.0281C404.698 34.4933 404.757 35.204 406.12 38.1654C407.719 41.7783 411.095 45.0358 415.004 46.8126C419.15 48.7079 426.672 48.5895 431.054 46.5757C435.141 44.6804 437.984 41.8968 439.702 38.047C441.242 34.671 441.242 34.3156 441.182 15.0667L441.123 13.02979H436.977H432.831V16.9028C432.831 32.1834 432.772 32.8349 431.528 35.3817C429.811 38.6985 427.145 40.1199 422.763 40.1199C418.913 40.1199 416.248 38.6985 414.471 35.8555C413.345 34.0195 413.286 32.8349 413.286 17.4358V13.02979H408.785H404.343L404.52 18.0281Z"/>
+            <path d="M471.326 24.0696V47.2275H475.472H479.618V39.2318V31.2361H485.896C489.331 31.2361 492.648 31.5323 493.3 31.8284C495.432 33.0129 496.202 35.5597 496.202 41.6009V47.2275H500.348H504.494V39.7056C504.494 32.8353 504.375 32.0061 503.072 29.7554C502.243 28.4524 500.644 26.7941 499.518 26.2018C498.334 25.5503 497.386 24.8395 497.386 24.6026C497.386 24.3657 498.275 23.7735 499.341 23.2996C507.514 19.9237 506.863 7.24898 498.275 2.86615C495.491 1.38546 494.899 1.32624 483.349 1.14855L471.326 0.97087V24.0696Z"/>
+            <path d="M534.703 24.1288V47.2275H549.51H564.317V43.3778V39.528H553.656H542.995V33.6052V27.6825H552.175H561.356V23.8327V19.9829H552.175H542.936L543.113 14.4747L543.291 9.02581L553.241 8.84812L563.132 8.72967V4.87988V1.03009H548.918H534.703V24.1288Z"/>
+            <path d="M625.318 24.1288V47.2275H639.829H654.34V43.3778V39.528H644.271H634.202V20.279V1.03009H629.76H625.318V24.1288Z"/>
+            <path d="M690.766 1.74082C689.641 4.76142 676.848 45.9245 676.848 46.4576C676.848 46.9906 678.091 47.2275 681.171 47.2275H685.495L686.857 42.4893L688.279 37.7511H698.17H708.061L709.423 42.4893L710.785 47.2275H715.109C718.248 47.2275 719.491 46.9906 719.491 46.4576C719.491 46.1022 716.293 35.7374 712.443 23.5365L705.395 1.32623L698.229 1.14855C692.78 1.03009 690.944 1.20777 690.766 1.74082ZM702.079 19.0945C703.855 24.6026 705.277 29.3408 705.277 29.5777C705.277 29.8739 702.079 30.0516 698.17 30.0516C694.261 30.0516 691.062 29.8739 691.062 29.5777C691.003 29.3408 692.424 24.5434 694.142 18.9168C696.393 11.6318 697.518 8.72967 698.11 8.84812C698.643 8.96658 700.183 12.8756 702.079 19.0945Z"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <script>
+      const iconStrokeGroup = document.getElementById('icon-stroke');
+      const logoIconGroup = document.getElementById('logo-icon');
+      const svgEl = document.querySelector('svg');
+      const iconFillGroup = document.getElementById('icon-fill');
+      const textStrokeGroup = document.getElementById('text-stroke');
+      const textWrapGroup = document.getElementById('text-wrap');
+      const textFillGroup = document.getElementById('text-fill');
+
+      // Preparar icono (trazo)
+      const iconStrokePath = iconStrokeGroup.querySelector('path');
+      iconStrokePath.classList.add('stroke');
+      // Sin animación de trazo; mostramos completo
+      iconStrokePath.style.strokeDasharray = 'none';
+      iconStrokePath.style.strokeDashoffset = 0;
+
+      // Estado inicial: texto oculto
+      textStrokeGroup.style.opacity = 0;
+      textFillGroup.style.opacity = 0;
+
+      function computeCenterOffsetPx() {
+        const iconRect = logoIconGroup.getBoundingClientRect();
+        const textRect = textWrapGroup.getBoundingClientRect();
+        const combinedLeft = Math.min(iconRect.left, textRect.left);
+        const combinedRight = Math.max(iconRect.right, textRect.right);
+        const combinedCenterX = combinedLeft + (combinedRight - combinedLeft) / 2;
+        const iconCenterX = iconRect.left + iconRect.width / 2;
+        const cx = combinedCenterX - iconCenterX;
+
+        // Ajuste vertical: alinear el pico inferior del icono con la línea base del texto
+        const iconBottom = iconRect.bottom; // aproximación al pico
+        const textBaselineY = textRect.bottom; // base de letras
+        let cy = textBaselineY - iconBottom;
+        const verticalNudgePx = 4.5; // ajuste fino: bajar ~2px adicionales para notar la diferencia
+        cy += verticalNudgePx;
+        return { cx, cy };
+      }
+
+      // Animaciones
+      requestAnimationFrame(() => {
+        // calcular centrado dinámico en px y setear la variable CSS
+        const { cx, cy } = computeCenterOffsetPx();
+        logoIconGroup.style.setProperty('--cx', `${cx}px`);
+        logoIconGroup.style.setProperty('--cy', `${cy}px`);
+
+        // 1) Escala + rotación 360º desde el centro SOLO del icono
+        logoIconGroup.classList.add('logo-scale-rotate');
+
+        const rotateDur = 1200; // debe coincidir con .logo-scale-rotate
+        const slideDur = 1200;  // debe coincidir con .slide-left-home
+        // 2) Luego, desplazar el icono hacia la izquierda
+        setTimeout(() => {
+          logoIconGroup.classList.add('slide-left-home');
+        }, rotateDur + 50);
+
+        // 3) Al terminar el desplazamiento, mostrar y dibujar el texto
+        setTimeout(() => {
+          textStrokeGroup.classList.add('show-right');
+          textStrokeGroup.style.opacity = 1;
+
+          const textStrokePaths = Array.from(textStrokeGroup.querySelectorAll('path'));
+          const baseDur = 700;
+          const stagger = 100;
+          let maxEnd = 0;
+
+          textStrokePaths.forEach((p, i) => {
+            const len = Math.ceil(p.getTotalLength());
+            p.classList.add('stroke');
+            p.style.setProperty('--len', len);
+            p.style.strokeDasharray = len;
+            p.style.strokeDashoffset = len;
+            const delay = i * stagger;
+            p.style.animation = `draw ${baseDur}ms cubic-bezier(.4,.0,.2,1) ${delay}ms forwards`;
+            maxEnd = Math.max(maxEnd, delay + baseDur);
+          });
+
+          setTimeout(() => { textFillGroup.classList.add('show-pop'); textFillGroup.style.opacity = 1; }, maxEnd + 150);
+        }, rotateDur + 50 + slideDur + 50);
+      });
+    </script>
+  </body>
+</html> 
