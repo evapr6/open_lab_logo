@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Escena: Fondo + Logo</title>
+    <style>
+      html, body { margin:0; height:100%; background:#FCFCF8; overflow:hidden; overscroll-behavior:none; }
+      /* Fondo a pantalla completa, sin bloquear interacciones */
+      .bg-gradients { position:fixed; inset:0; width:100vw; height:100dvh; display:block; pointer-events:none; z-index:0; }
+      /* Capa de contenido (logo) centrada y por encima */
+      .stage { position:relative; z-index:1; width:100%; height:100dvh; display:grid; place-items:center; }
+      .logo-frame { width:min(920px, 95vw); aspect-ratio: 12.6; height:auto; border:0; background:transparent; overflow:hidden; display:block; }
+
+      /* ====== Estilos de blobs (copiados de gradients.html) ====== */
+      .responsive-scale { transform-origin: 50% 50%; }
+      @media (max-width: 599px) { .responsive-scale { transform: scale(0.95); } }
+      @media (min-width: 600px) and (max-width: 991px) { .responsive-scale { transform: scale(0.98); } }
+      @media (min-width: 992px) and (max-width: 1439px) { .responsive-scale { transform: scale(1.0); } }
+      @media (min-width: 1440px) { .responsive-scale { transform: scale(1.08); } }
+      @keyframes floatUpDownA { 0%{ transform: translate(var(--x), var(--y)); } 50%{ transform: translate(calc(var(--x) + 16px), calc(var(--y) - 120px)); } 100%{ transform: translate(var(--x), var(--y)); } }
+      @keyframes floatUpDownB { 0%{ transform: translate(var(--x), var(--y)); } 50%{ transform: translate(calc(var(--x) - 16px), calc(var(--y) + 120px)); } 100%{ transform: translate(var(--x), var(--y)); } }
+      @keyframes floatUpDownC { 0%{ transform: translate(var(--x), var(--y)); } 50%{ transform: translate(calc(var(--x) + 14px), calc(var(--y) - 100px)); } 100%{ transform: translate(var(--x), var(--y)); } }
+      @keyframes floatLow { 0%{ transform: translate(var(--x), var(--y)); } 50%{ transform: translate(calc(var(--x) + 24px), calc(var(--y) - 90px)); } 100%{ transform: translate(var(--x), var(--y)); } }
+      .css-blob { transform-box: fill-box; transform-origin: 50% 50%; animation-timing-function: cubic-bezier(.25,.1,.25,1); animation-iteration-count: infinite; animation-direction: alternate; }
+      .blob-a { --x: 120px;  --y: 80px;  animation-name: floatUpDownA; animation-duration: 24s; }
+      .blob-b { --x: 1200px; --y: 20px;  animation-name: floatUpDownB; animation-duration: 28s; }
+      .blob-c { --x: 1320px; --y: 360px; animation-name: floatUpDownC; animation-duration: 32s; }
+      .blob-d { --x: 460px;  --y: 500px; animation-name: floatLow;    animation-duration: 32s; }
+    </style>
+  </head>
+  <body>
+    <!-- Fondo (blobs CSS) -->
+    <svg class="bg-gradients" viewBox="0 0 1440 540" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <filter id="fluidSpot" x="-60%" y="-60%" width="220%" height="220%">
+          <feTurbulence type="turbulence" baseFrequency="0.006 0.008" numOctaves="2" seed="7" result="noise">
+            <animate attributeName="baseFrequency" values="0.006 0.008; 0.004 0.006; 0.006 0.008" dur="46s" repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="48" xChannelSelector="R" yChannelSelector="G" result="disp">
+            <animate attributeName="scale" values="34; 48; 34" dur="36s" repeatCount="indefinite" />
+          </feDisplacementMap>
+          <feGaussianBlur in="disp" stdDeviation="9"/>
+        </filter>
+        <radialGradient id="spotStrong" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#DCFC68" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#DCFC68" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="spotSoft" cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stop-color="#DCFC68" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#DCFC68" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g class="responsive-scale" filter="url(#fluidSpot)">
+        <g class="css-blob blob-a"><ellipse cx="0" cy="0" rx="120" ry="78" fill="url(#spotStrong)" opacity="0.95"/></g>
+        <g class="css-blob blob-b"><ellipse cx="0" cy="0" rx="115" ry="74" fill="url(#spotStrong)" opacity="0.95"/></g>
+        <g class="css-blob blob-c"><ellipse cx="0" cy="0" rx="105" ry="68" fill="url(#spotSoft)"  opacity="0.85"/></g>
+        <g class="css-blob blob-d"><ellipse cx="0" cy="0" rx="140" ry="90" fill="url(#spotSoft)"  opacity="0.7"/></g>
+      </g>
+    </svg>
+
+    <!-- Logo en iframe (conserva exactamente su animación y centrado) -->
+    <div class="stage">
+      <iframe class="logo-frame" src="logo.html" title="Logo Open Future Lab" loading="eager" allowtransparency="true" scrolling="no"></iframe>
+    </div>
+  </body>
+</html>
